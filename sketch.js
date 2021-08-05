@@ -27,7 +27,7 @@ function draw() {
   if(foods!== undefined){
     textSize(20);
     fill(255);
-    text("note:press UP_AROWW key to feed drago milk", 50, 50);
+    text("note:press UP AROWW key to feed drago milk", 50, 50);
     text("food remaining: "+foods, 150, 150);
 
     if(keywentdown(UP_ARROW)){
@@ -35,22 +35,37 @@ function draw() {
       dog.addImage(happydogIMG);
     }
 
-    if(keywentdown(UP_ARROW)){
-      dog.addImage(dogIMG);
-    }
+   
 
     if(foods === 0){
       food = 20
     }
 
   
-  
-
 
   drawSprites();
   //add styles here
   }
 }
+
+function writestock(x){
+  if(x<=0){
+    x = 0;
+  }
+
+  else{
+    x = x-1;
+  }
+  database.ref("/").update({
+    food:x
+  });
+
+}
+
+function readstock(data){
+   foods = data.val();
+}
+
 
 
 
